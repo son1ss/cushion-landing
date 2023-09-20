@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background-color: #F19D2F;
+  
+  &__offer {
+    margin: 0;
+    text-align: center;
+    font-size: 12.694px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  &__emoji {
+    width: 12.694px;
+  }
+}
