@@ -222,6 +222,10 @@ body {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
 }
+.order__star-image {
+  width: 14px;
+  height: 13px;
+}
 .order__star-label {
   cursor: pointer;
   transition: opacity 0.3s ease-out;
