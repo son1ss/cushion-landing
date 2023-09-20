@@ -2,6 +2,7 @@ const timer = document.querySelector('.preview__timer')
 const time = timer.textContent.split(':').map(num => Number(num))
 const currentImage = document.querySelector('.order__image')
 const carousel = document.querySelector('.order__carousel')
+const colorSelect = document.querySelector('#color')
 
 const originalPrice = 250.00
 const discountPrice = 160.00
@@ -26,13 +27,24 @@ const interval = setInterval(() => {
   timer.textContent = time.map(num => String(num).padStart(2,'0')).join(':')
 }, 1000)
 
-carousel.addEventListener('click', e => {
-  if (!e.target.src) return
+function changeImage(value) {
   document.querySelector('.order__preview_active').classList.remove('order__preview_active')
-  e.target.classList.add('order__preview_active')
-  currentImage.classList.add('order__image_hidden')
-  setTimeout(() => {
-    currentImage.src = e.target.src
-    currentImage.classList.remove('order__image_hidden')
-  }, 300)
+  carousel.querySelectorAll('.order__preview').forEach(image => {
+    if (!image.alt.includes(value)) return
+    image.classList.add('order__preview_active')
+    currentImage.classList.add('order__image_hidden')
+    setTimeout(() => {
+      currentImage.src = image.src
+      currentImage.classList.remove('order__image_hidden')
+    }, 300)
+  })
+}
+
+carousel.addEventListener('click', e => {
+  if (!e.target.alt) return
+  changeImage(e.target.alt.split(' ')[0])
+})
+
+colorSelect.addEventListener('change', e => {
+  changeImage(e.target.value);
 })
